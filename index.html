@@ -133,9 +133,9 @@
 									</section>
 								<p>
 									<b>2)</b>	Create a PCP (pitch class profile of the FFT) array of 12 where each element is the total aggregate strength of the note. Loop over all 9 octave frequencies of each note and add the FFT strength together to aggregate the strength of the note<br>
-									&emsp;&emsp;-	The resulting array looks something like [3782,2393,2990,2498,3489,2085,2957,3868,2085,2974,2756,2946]<br>
+									&emsp;&emsp;-	The resulting array looks something like [3782, 2393, 2990, 2498, 3489, 2085, 2957, 3868, 2085, 2974, 2756, 2946]<br>
 									&emsp;&emsp;-	The 3 strongest are replaced with 1's and the rest are 0's<br>
-									&emsp;&emsp;-	For example: [1,0,0,0,1,0,0,1,0,0,0,0] is a C chord<br>
+									&emsp;&emsp;-	For example: [1, 0, 0, 0, 1, 0, 0, 1, 0, 0, 0, 0] is a C chord<br>
 									<b>3)</b>	After the Pitch Class Profile array has been defined for the samples, we convert the array to binary so that we can index into a Chord Library array. If a match has been found then it will be printed onto the OLED display
 							    </p>
 								<section style="text-align: center;">
