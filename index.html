@@ -55,7 +55,7 @@
 				<!-- One -->
 					<section id="one" class="wrapper style2 spotlights">
 						<section>
-							<a href="#" class="image"><img src="images/FFTGraph.png" alt="" data-position="top center" /></a>
+							<a href="#" class="image"><img src="images/OLED_ListeningPic.jpg" alt="" data-position="top center" /></a>
 							<div class="content">
 								<div class="inner">
 									<h2>Description</h2>
@@ -85,7 +85,7 @@
 							</div>
 						</section>
 						<section>
-							<a href="#" class="image"><img src="images/NoteFreqTable.png" alt="" data-position="25% 25%" /></a>
+							<a href="#" class="image"><img src="images/OLED_ListingPic.jpg" alt="" data-position="25% 25%" /></a>
 							<div class="content">
 								<div class="inner">
 									<h2>Key Features</h2>
@@ -119,13 +119,19 @@
 								<br>
 								<section style="text-align: center;">
 									<img src="images/FFTGraph_inline.png" width="450px">
-									<h4>An FFT of 1024 samples we plotted during the debugging phase</h4>
+									<h4>An FFT of 1024 Samples Plotted During the Debugging Phase</h4>
 								</section>
 								<br>
 								<h2>Post-Processing</h2>
 								<p>
 									We then analyze the spectrum of the audio signal at different frequencies.<br>
 									<b>1)</b>	There are 12 notes [C,C#,D,D#,E,F,F#,G,G#,A,A#,B] and each note has 9 octaves so there are 12*9 = 108 frequencies we need to collect the energy of from the FFT<br>
+								</p>
+									<section style="text-align: center;">
+										<img src="images/NoteFreqTable_inline.png" width="450px">
+										<h4>Music Notes and Their Corresponding Frequencies at Each Octave</h4>
+									</section>
+								<p>
 									<b>2)</b>	Create a PCP (pitch class profile of the FFT) array of 12 where each element is the total aggregate strength of the note. Loop over all 9 octave frequencies of each note and add the FFT strength together to aggregate the strength of the note<br>
 									&emsp;&emsp;-	The resulting array looks something like [3782,2393,2990,2498,3489,2085,2957,3868,2085,2974,2756,2946]<br>
 									&emsp;&emsp;-	The 3 strongest are replaced with 1's and the rest are 0's<br>
@@ -133,8 +139,21 @@
 									<b>3)</b>	After the Pitch Class Profile array has been defined for the samples, we convert the array to binary so that we can index into a Chord Library array. If a match has been found then it will be printed onto the OLED display
 							    </p>
 								<section style="text-align: center;">
-									<img src="images/NoteFreqTable_inline.png" width="450px">
-									<h4>Music notes and their corresponding frequencies at each octave</h4>
+									<img src="images/ChordTable_inline.png" width="450px">
+									<h4>Acceptable Chords and Their Corresponding Profiles</h4>
+								</section>
+								<br>
+								<h2>Recommender System</h2>
+								<p>
+									Our program starts its connect with HookTheory's REST API by sending an authentication POST request with our username and password.
+									Everything is connected over HTTPS, which requires an adequate root certificate and TLS connection.
+									Once accepted, it responds with an authentication key “activkey” that is used to retrieve song data from the database.
+									We then query a request with the key and the chord progression formatted in the GET header, and it responds with a json-formatted list of the first 20 songs that match the progression, in order of popularity.
+									We iterate through the first 4 items in this list, displaying them on the OLED display.
+								</p>
+								<section style="text-align: center;">
+									<img src="images/GETRequest_inline.png" width="450px">
+									<h4>An Example Response Following a GET Request to the Server</h4>
 								</section>
 							</p>
 						</div>
